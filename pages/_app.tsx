@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import '../styles/globals.css'
-import { AppProps } from 'next/app'
+import Head from "next/head";
+import "../styles/globals.css";
+import { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +14,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
-        <title>Next.js PWA Example</title>
+        <title>Mechabellum team counters suggestion</title>
 
         <link rel="manifest" href="/manifest.json" />
         <link
@@ -31,8 +31,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#317EFB" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
       <Component {...pageProps} />
     </>
-  )
+  );
 }

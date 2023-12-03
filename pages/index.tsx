@@ -1,44 +1,27 @@
-import AddSquadButton from "../components/AddSquadButton";
-import SquadPlaceholder from "../components/SquadPlaceholder";
+"use client";
+
+import SquadComponent from "../components/Squad";
 
 import styles from "../styles/Home.module.css";
 
+import type { Squad } from "../types/Squad";
+
 export default function Home() {
+  const onAdd = (squads: Squad[]) => {};
+
   return (
     <main className={styles.container}>
-      <section className={styles.section}>
-        <h1 className={styles.sectionHeading}>Opponent's Army</h1>
-        <div className={styles.squadContainer}>
-          <AddSquadButton onClick={() => {}} />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-        </div>
-      </section>
-      <section className={styles.section}>
-        <h1 className={styles.sectionHeading}>Your Army</h1>
-        <div className={styles.squadContainer}>
-          <AddSquadButton onClick={() => {}} />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-          <SquadPlaceholder />
-        </div>
-      </section>
-      <section className={styles.section}>
-        <h1 className={styles.sectionHeading}>Squad Suggestions</h1>
-        <p className={styles.notification}>
-          Please add army squads in order to get suggestions on how to improve
-          your army.
-        </p>
-      </section>
+      <>
+        <SquadComponent onChange={onAdd} squadName="Opponent's Army" />
+        <SquadComponent onChange={onAdd} squadName="Your Army" />
+        <section className={styles.section}>
+          <h1 className={styles.sectionHeading}>Squad Suggestions</h1>
+          <p className={styles.notification}>
+            Please add army squads in order to get suggestions on how to improve
+            your army.
+          </p>
+        </section>
+      </>
     </main>
   );
 }

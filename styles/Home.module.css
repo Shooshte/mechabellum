@@ -34,7 +34,7 @@
 }
 
 @media screen and (min-width: 370px) {
-  .section {
+  .squadSection {
     margin: 0 10px 10px 10px;
     width: calc(100% - 20px);
   }

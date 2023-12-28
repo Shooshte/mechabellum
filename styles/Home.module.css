@@ -21,30 +21,23 @@
   margin-bottom: 6px;
 }
 
-.squadContainer {
-  display: grid;
-  gap: 6px;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 67px));
-  max-width: 300px;
-  width: 100%;
-}
-
 .notification {
   font-size: 10px;
 }
 
-@media screen and (min-width: 370px) {
-  .squadSection {
-    margin: 0 10px 10px 10px;
-    width: calc(100% - 20px);
-  }
+.squadSection {
+  margin: 0 10px 10px 10px;
+  width: calc(100% - 20px);
+}
 
-  .section:first-child {
-    margin: 10px;
-  }
+.section:first-child {
+  margin: 10px;
+}
 
-  .squadContainer {
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 67px));
-  }
+.squadContainer {
+  display: grid;
+  column-gap: 30px;
+  grid-template-columns: repeat(auto-fill, 80px);
+  row-gap: 10px;
+  width: 100%;
 }

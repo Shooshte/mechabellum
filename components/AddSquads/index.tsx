@@ -21,13 +21,12 @@ interface SelectedSquad {
 const INITIAL_SQUADS = squadsData.squads.map((squad) => {
   return {
     count: 0,
-    text: squad.text,
+    name: squad.text,
   };
 });
 
 const AddSquads = (props: Props) => {
-  const [selectedSquads, setSelectedSquads] =
-    useState<SelectedSquad[]>(INITIAL_SQUADS);
+  const [selectedSquads, setSelectedSquads] = useState<Squad[]>(INITIAL_SQUADS);
 
   const onDecrement = (squadText: string) => {
     const newSelectedSquads = selectedSquads.map((squad) => {
@@ -36,10 +35,10 @@ const AddSquads = (props: Props) => {
         newCount = 0;
       }
 
-      if (squad.text === squadText) {
+      if (squad.name === squadText) {
         return {
           count: newCount,
-          text: squadText,
+          name: squadText,
         };
       }
       return squad;
@@ -50,10 +49,10 @@ const AddSquads = (props: Props) => {
 
   const onIncrement = (squadText: string) => {
     const newSelectedSquads = selectedSquads.map((squad) => {
-      if (squad.text == squadText) {
+      if (squad.name == squadText) {
         return {
           count: squad.count + 1,
-          text: squadText,
+          name: squadText,
         };
       }
 
@@ -61,6 +60,12 @@ const AddSquads = (props: Props) => {
     });
 
     setSelectedSquads(newSelectedSquads);
+  };
+
+  const handleAddSquads = () => {
+    const newSquads = selectedSquads.filter((squad) => squad.count > 0);
+
+    props.onAdd(newSquads);
   };
 
   return (
@@ -71,19 +76,23 @@ const AddSquads = (props: Props) => {
           return (
             <li
               className={styles.squad}
-              key={`${props.title}-${squad.text}-li`}
+              key={`${props.title}-${squad.name}-li`}
             >
-              <div>{squad.text}</div>
+              <div>{squad.name}</div>
               <div>{squad.count ? squad.count : null}</div>
-              <button onClick={() => onDecrement(squad.text)}>-</button>
-              <button onClick={() => onIncrement(squad.text)}>+</button>
+              <button onClick={() => onDecrement(squad.name)}>-</button>
+              <button onClick={() => onIncrement(squad.name)}>+</button>
             </li>
           );
         })}
       </ul>
       <div className={styles.buttonsContainer}>
-        <button className={styles.mainButton}>Close Without Adding</button>
-        <button className={styles.mainButton}>Add Squads</button>
+        <button className={styles.mainButton} onClick={props.onCancel}>
+          Close Without Adding
+        </button>
+        <button className={styles.mainButton} onClick={handleAddSquads}>
+          Add Squads
+        </button>
       </div>
     </section>
   );

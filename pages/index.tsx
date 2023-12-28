@@ -16,10 +16,7 @@ export default function Home() {
         <SquadComponent onChange={onAdd} squadName="Your Army" />
         <section className={styles.section}>
           <h1 className={styles.sectionHeading}>Squad Suggestions</h1>
-          <p className={styles.notification}>
-            Please add army squads in order to get suggestions on how to improve
-            your army.
-          </p>
+          <p className={styles.notification}>WIP</p>
         </section>
       </>
     </main>

@@ -18,12 +18,16 @@ interface SelectedSquad {
   text: string;
 }
 
-const INITIAL_SQUADS = squadsData.squads.map((squad) => {
-  return {
-    count: 0,
-    name: squad.text,
-  };
-});
+const INITIAL_SQUADS = squadsData.squads
+  .sort((squadA, squadB) => {
+    return (squadA?.tier || 0) - (squadB.tier || 0);
+  })
+  .map((squad) => {
+    return {
+      count: 0,
+      name: squad.text,
+    };
+  });
 
 const AddSquads = (props: Props) => {
   const [selectedSquads, setSelectedSquads] = useState<Squad[]>(INITIAL_SQUADS);
@@ -78,10 +82,20 @@ const AddSquads = (props: Props) => {
               className={styles.squad}
               key={`${props.title}-${squad.name}-li`}
             >
-              <div>{squad.name}</div>
+              <div className={styles.squadName}>{squad.name}</div>
               <div>{squad.count ? squad.count : null}</div>
-              <button onClick={() => onDecrement(squad.name)}>-</button>
-              <button onClick={() => onIncrement(squad.name)}>+</button>
+              <button
+                className={styles.squadButton}
+                onClick={() => onDecrement(squad.name)}
+              >
+                -
+              </button>
+              <button
+                className={styles.squadButton}
+                onClick={() => onIncrement(squad.name)}
+              >
+                +
+              </button>
             </li>
           );
         })}

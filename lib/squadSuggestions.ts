@@ -67,7 +67,7 @@ export const getSquadSuggestions = ({
     }, []);
 
   // For list of possible suggestions
-  const sortedSuggestions = possibleSuggestions.sort(
+  const sortedSuggestions = [...possibleSuggestions].sort(
     (suggestionA, suggestionB) => {
       // Sort by number of counters in opponents army (less is better), resolve tie by tier
       const suggestionAData = squadsData.squads.find(
@@ -107,9 +107,17 @@ export const getSquadSuggestions = ({
         []
       );
 
+      const suggestionACountersCount = suggestionACounters.length;
+      const suggestionBCountersCount = suggestionBCounters.length;
+
+      if (suggestionACountersCount === suggestionBCountersCount) {
+        return (suggestionAData?.tier || 0) - (suggestionBData?.tier || 0);
+      }
+
       return suggestionACounters.length - suggestionBCounters.length;
     }
   );
+
   // Return unit suggestions
   return sortedSuggestions;
 

@@ -14,6 +14,7 @@
 
 .listContainer {
   list-style: none;
+  height: calc(100vh - 58px - 27px);
   margin: 0;
   padding: 0;
   overflow: auto;

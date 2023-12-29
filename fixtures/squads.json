@@ -1,0 +1,211 @@
+{
+  "patch": "0.7.36",
+  "squads": [
+    {
+      "text": "Wraith",
+      "tier": 4,
+      "counters": ["Crawler", "Fang", "Sledgehammer", "Steel Ball", "Wasp"],
+      "counteredBy": [
+        "Overlord",
+        "Mustang",
+        "Phoenix",
+        "Melting Point",
+        "Marksman"
+      ]
+    },
+    {
+      "text": "Phoenix",
+      "tier": 1,
+      "counters": ["Archlight", "Overlord", "Rhino", "Stormcaller", "Vulcan"],
+      "counteredBy": ["Wasp", "Marksman", "Mustang", "Fang", "Fortress"]
+    },
+    {
+      "text": "Fortress",
+      "tier": 1,
+      "counters": ["Archlight", "Rhino", "Sledgehammer", "Vulcan", "Wasp"],
+      "counteredBy": ["Crawler", "Marksman", "Melting Point", "Overlord"]
+    },
+    {
+      "text": "Mustang",
+      "tier": 1,
+      "counters": ["Fang", "Phoenix", "Wasp", "Crawler"],
+      "counteredBy": [
+        "Archlight",
+        "Sledgehammer",
+        "Stormcaller",
+        "Vulcan",
+        "Fortress",
+        "Rhino"
+      ]
+    },
+    {
+      "text": "Fang",
+      "tier": 2,
+      "counters": [],
+      "counteredBy": [
+        "Archlight",
+        "Crawler",
+        "Mustang",
+        "Sledgehammer",
+        "Stormcaller",
+        "Vulcan",
+        "Rhino"
+      ]
+    },
+    {
+      "text": "Crawler",
+      "tier": 2,
+      "counters": [
+        "Fang",
+        "Fortress",
+        "Hacker",
+        "Marksman",
+        "Melting Point",
+        "Sledgehammer",
+        "Steel Ball",
+        "Stormcaller"
+      ],
+      "counteredBy": ["Archlight", "Vulcan", "Mustang", "Rhino"]
+    },
+    {
+      "text": "Stormcaller",
+      "tier": 2,
+      "counters": [
+        "Archlight",
+        "Fang",
+        "Melting Point",
+        "Vulcan",
+        "Mustang",
+        "Marksman"
+      ],
+      "counteredBy": [
+        "Overlord",
+        "Phoenix",
+        "Stormcaller",
+        "Crawler",
+        "Sledgehammer",
+        "Rhino"
+      ]
+    },
+    {
+      "text": "Archlight"
+    },
+    {
+      "text": "Rhino",
+      "tier": 2,
+      "counters": ["Archlight", "Fang", "Vulcan", "Stormcaller", "Crawler"],
+      "counteredBy": [
+        "Fortress",
+        "Hacker",
+        "Marksman",
+        "Melting Point",
+        "Steel Ball",
+        "Phoenix",
+        "Overlord"
+      ]
+    },
+    {
+      "text": "Steel Ball",
+      "tier": 3,
+      "counters": ["Archlight", "Sledgehammer", "Fortress", "Rhino"],
+      "counteredBy": [
+        "Crawler",
+        "Hacker",
+        "Phoenix",
+        "Overlord",
+        "Stormcaller",
+        "Scorpion"
+      ]
+    },
+    {
+      "text": "War Factory",
+      "tier": 4,
+      "counters": [
+        "Archlight",
+        "Marksman",
+        "Rhino",
+        "Sledgehammer",
+        "Steel Ball",
+        "Vulcan",
+        "Stormcaller",
+        "Overlord"
+      ],
+      "counteredBy": ["Melting Point", "Scorpion"]
+    },
+    {
+      "text": "Overlord",
+      "tier": 3,
+      "counters": [
+        "Rhino",
+        "Steel Ball",
+        "Sledgehammer",
+        "Stormcaller",
+        "Vulcan"
+      ],
+      "counteredBy": ["Marksman", "Melting Point", "Phoenix", "Mustang"]
+    },
+    {
+      "text": "Melting Point",
+      "tier": 3,
+      "counters": ["Fortress", "Rhino", "Vulcan"],
+      "counteredBy": ["Crawler", "Marksman", "Phoenix", "Stormcaller"]
+    },
+    {
+      "text": "Vulcan",
+      "tier": 2,
+      "counters": ["Crawler", "Fang", "Mustang"],
+      "counteredBy": [
+        "Fortress",
+        "Marksman",
+        "Melting Point",
+        "Overlord",
+        "Phoenix",
+        "Rhino",
+        "Stormcaller"
+      ]
+    },
+    {
+      "text": "Hacker",
+      "tier": 3,
+      "counters": ["Steel Ball", "Sledgehammer", "Rhino", "Archlight"],
+      "counteredBy": ["Stormcaller", "Crawler", "Fang", "Phoenix", "Overlord"]
+    },
+    {
+      "text": "Sledgehammer",
+      "tier": 4,
+      "counters": ["Fang", "Mustang", "Archlight"],
+      "counteredBy": [
+        "Hacker",
+        "Steel Ball",
+        "Fortress",
+        "Phoenix",
+        "Overlord",
+        "Scorpion"
+      ]
+    },
+    {
+      "text": "Marksman",
+      "tier": 4,
+      "counters": [
+        "Phoenix",
+        "Overlord",
+        "Melting Point",
+        "Vulcan",
+        "Archlight"
+      ],
+      "counteredBy": ["Crawler", "Fang", "Stormcaller", "Wasp"]
+    },
+    {
+      "text": "Wasp",
+      "tier": 4,
+      "counters": ["Marksman", "Phoenix"],
+      "counteredBy": ["Archlight", "Mustang", "Fortress"]
+    },
+    {
+      "text": "Scorpion",
+      "tier": 3,
+      "counters": ["Sledgehammer", "Steel Ball", "Archlight", "War Factory"],
+      "counteredBy": ["Marksman", "Phoenix", "Stormcaller", "Overlord"]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+.container {
+  align-items: flex-start;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: flex-start;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.listContainer {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.buttonsContainer {
+  align-items: flex-start;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: 1fr 1fr;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.squad {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mainButton {
+  border: none;
+  padding: 6px;
+  width: 100%;
+}

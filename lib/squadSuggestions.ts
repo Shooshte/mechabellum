@@ -47,10 +47,10 @@ export const getSquadSuggestions = ({
       const squadBCountersCount = squadB.fieldedCounters.length;
 
       if (squadACountersCount === squadBCountersCount) {
-        return squadB.tier - squadA.tier;
+        return squadA.tier - squadB.tier;
       }
 
-      return squadBCountersCount - squadACountersCount;
+      return squadACountersCount - squadBCountersCount;
     });
 
   // For the first three units with the least counters
@@ -107,7 +107,7 @@ export const getSquadSuggestions = ({
         []
       );
 
-      return suggestionBCounters.length - suggestionACounters.length;
+      return suggestionACounters.length - suggestionBCounters.length;
     }
   );
   // Return unit suggestions

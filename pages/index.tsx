@@ -25,9 +25,6 @@ export default function Home() {
     const suggestions = getSquadSuggestions({ opponentArmy, yourArmy });
     const newSuggestions = suggestions.slice(0, 3);
 
-    console.log("suggestions: ", suggestions);
-    console.log("newSuggestions: ", newSuggestions);
-
     setSquadSuggestions(newSuggestions);
   }, [opponentArmy, yourArmy]);
 

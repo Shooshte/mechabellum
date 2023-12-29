@@ -20,7 +20,7 @@ type SquadState = (Squad | "placeholder")[];
 
 const MIN_SQUADS_DISPLAYED = 5;
 
-const Squad = ({ onChange, squadName }: Props) => {
+const SquadComponent = ({ onChange, squadName }: Props) => {
   const [squads, setSquads] = useState<SquadState>([]);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -166,4 +166,4 @@ const Squad = ({ onChange, squadName }: Props) => {
   );
 };
 
-export default Squad;
+export default SquadComponent;

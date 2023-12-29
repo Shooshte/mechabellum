@@ -9,12 +9,15 @@
   position: fixed;
   top: 0;
   width: 100vw;
+  z-index: 1;
 }
 
 .listContainer {
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow: auto;
+  width: 100%;
 }
 
 .buttonsContainer {
@@ -29,7 +32,23 @@
 .squad {
   align-items: center;
   display: flex;
+  gap: 8px;
   justify-content: flex-start;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.squadName {
+  flex-grow: 1;
+}
+
+.squadButton {
+  align-items: center;
+  display: flex;
+  border: none;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
 }
 
 .mainButton {

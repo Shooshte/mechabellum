@@ -108,6 +108,10 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
       })
       .filter((squad) => squad === "placeholder" || squad.count > 0);
 
+    const finalSquads = newSquads.filter((squad) => squad !== "placeholder");
+    // @ts-ignore
+    onChange(finalSquads);
+
     while (newSquads.length < MIN_SQUADS_DISPLAYED) {
       newSquads.push("placeholder");
     }
@@ -130,6 +134,16 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
 
       return { ...squad };
     });
+
+    const finalSquads = newSelectedSquads.filter(
+      (squad) => squad !== "placeholder"
+    );
+    // @ts-ignore
+    onChange(finalSquads);
+
+    while (newSelectedSquads.length < MIN_SQUADS_DISPLAYED) {
+      newSelectedSquads.push("placeholder");
+    }
 
     setSquads(newSelectedSquads);
   };

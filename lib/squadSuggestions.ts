@@ -113,7 +113,12 @@ export const getSquadSuggestions = ({
       return [...counters, ...possibleCounters];
     }, []);
 
-  const suggestions = possibleSuggestions.slice(0, 3);
+  const suggestions = possibleSuggestions.slice(0, 3).map((suggestion) => {
+    return {
+      name: suggestion.name,
+      count: suggestion.count,
+    };
+  });
 
   // Return unit suggestions
   return suggestions;

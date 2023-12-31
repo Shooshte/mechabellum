@@ -14,11 +14,6 @@ interface Props {
   title: string;
 }
 
-interface SelectedSquad {
-  count: number;
-  text: string;
-}
-
 const INITIAL_SQUADS = squadsData.squads
   .sort((squadA, squadB) => {
     return (squadA?.tier || 0) - (squadB.tier || 0);

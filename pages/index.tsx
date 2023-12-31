@@ -11,7 +11,7 @@ import type { Squad } from "../types/Squad";
 export default function Home() {
   const [opponentArmy, setOpponentArmy] = useState<Squad[]>([]);
   const [yourArmy, setYourArmy] = useState<Squad[]>([]);
-  const [squadSuggestions, setSquadSuggestions] = useState<string[]>([]);
+  const [squadSuggestions, setSquadSuggestions] = useState<Squad[]>([]);
 
   const onOpponentArmyChange = (army: Squad[]) => {
     setOpponentArmy(army);
@@ -23,9 +23,8 @@ export default function Home() {
 
   useEffect(() => {
     const suggestions = getSquadSuggestions({ opponentArmy, yourArmy });
-    const newSuggestions = suggestions.slice(0, 3);
 
-    setSquadSuggestions(newSuggestions);
+    setSquadSuggestions(suggestions);
   }, [opponentArmy, yourArmy]);
 
   const showSuggestions = useMemo(() => {
@@ -45,7 +44,9 @@ export default function Home() {
           {showSuggestions ? (
             <ul>
               {squadSuggestions.map((squadSuggestion) => (
-                <li key={squadSuggestion}>{squadSuggestion}</li>
+                <li
+                  key={squadSuggestion.name}
+                >{`${squadSuggestion.count} ${squadSuggestion.name}`}</li>
               ))}
             </ul>
           ) : (

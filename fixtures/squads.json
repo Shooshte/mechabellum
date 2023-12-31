@@ -4,6 +4,17 @@
     {
       "text": "Wraith",
       "tier": 4,
+      "stats": {
+        "price": 300,
+        "hp": 15791,
+        "speed": 10,
+        "atk": 1058,
+        "splashRange": 3,
+        "attackInterval": 1.7,
+        "range": 55,
+        "target": ["air", "ground"],
+        "unitsCount": 1
+      },
       "counters": ["Crawler", "Fang", "Sledgehammer", "Steel Ball", "Wasp"],
       "counteredBy": [
         "Overlord",
@@ -16,18 +27,51 @@
     {
       "text": "Phoenix",
       "tier": 1,
+      "stats": {
+        "price": 200,
+        "hp": 1541,
+        "speed": 16,
+        "atk": 3073,
+        "splashRange": 0,
+        "attackInterval": 3.2,
+        "range": 120,
+        "target": ["air", "ground"],
+        "unitsCount": 2
+      },
       "counters": ["Archlight", "Overlord", "Rhino", "Stormcaller", "Vulcan"],
       "counteredBy": ["Wasp", "Marksman", "Mustang", "Fang", "Fortress"]
     },
     {
       "text": "Fortress",
       "tier": 1,
+      "stats": {
+        "price": 400,
+        "hp": 51205,
+        "speed": 6,
+        "atk": 6843,
+        "splashRange": 4.5,
+        "attackInterval": 2,
+        "range": 100,
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "counters": ["Archlight", "Rhino", "Sledgehammer", "Vulcan", "Wasp"],
       "counteredBy": ["Crawler", "Marksman", "Melting Point", "Overlord"]
     },
     {
       "text": "Mustang",
       "tier": 1,
+      "stats": {
+        "price": 200,
+        "hp": 343,
+        "speed": 16,
+        "atk": 33,
+        "splashRange": 0,
+        "attackInterval": 0.4,
+        "range": 95,
+        "target": ["air", "ground"],
+        "unitsCount": 12
+      },
       "counters": ["Fang", "Phoenix", "Wasp", "Crawler"],
       "counteredBy": [
         "Archlight",
@@ -41,6 +85,17 @@
     {
       "text": "Fang",
       "tier": 2,
+      "stats": {
+        "price": 100,
+        "hp": 117,
+        "speed": 6,
+        "atk": 56,
+        "splashRange": 0,
+        "attackInterval": 1.5,
+        "range": 75,
+        "target": ["air", "ground"],
+        "unitsCount": 18
+      },
       "counters": [],
       "counteredBy": [
         "Archlight",
@@ -55,6 +110,17 @@
     {
       "text": "Crawler",
       "tier": 2,
+      "stats": {
+        "price": 100,
+        "hp": 261,
+        "speed": 16,
+        "atk": 66,
+        "attackInterval": 0.6,
+        "splashRange": 0,
+        "range": "melee",
+        "target": ["ground"],
+        "unitsCount": 24
+      },
       "counters": [
         "Fang",
         "Fortress",
@@ -70,6 +136,17 @@
     {
       "text": "Stormcaller",
       "tier": 2,
+      "stats": {
+        "price": 200,
+        "hp": 1149,
+        "speed": 6,
+        "atk": 905,
+        "splashRange": 5,
+        "attackInterval": 6.3,
+        "range": 180,
+        "target": ["ground"],
+        "unitsCount": 4
+      },
       "counters": [
         "Archlight",
         "Fang",
@@ -90,6 +167,17 @@
     {
       "text": "Archlight",
       "tier": 2,
+      "stats": {
+        "price": 100,
+        "hp": 3903,
+        "speed": 7,
+        "atk": 346,
+        "splashRange": 7,
+        "attackInterval": 1.1,
+        "range": 93,
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "counters": ["Crawler", "Fang", "Mustang"],
       "counteredBy": [
         "Rhino",
@@ -103,6 +191,17 @@
     {
       "text": "Rhino",
       "tier": 2,
+      "stats": {
+        "price": 200,
+        "hp": 19297,
+        "speed": 16,
+        "atk": 3297,
+        "splashRange": 6,
+        "attackInterval": 0.9,
+        "range": "melee",
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "counters": ["Archlight", "Fang", "Vulcan", "Stormcaller", "Crawler"],
       "counteredBy": [
         "Fortress",
@@ -117,6 +216,17 @@
     {
       "text": "Steel Ball",
       "tier": 3,
+      "stats": {
+        "price": 200,
+        "hp": 4571,
+        "speed": 16,
+        "atk": [2, 2605],
+        "splashRange": 0,
+        "attackInterval": 0.2,
+        "range": 45,
+        "target": ["ground"],
+        "unitsCount": 5
+      },
       "counters": ["Archlight", "Sledgehammer", "Fortress", "Rhino"],
       "counteredBy": [
         "Crawler",
@@ -130,6 +240,17 @@
     {
       "text": "War Factory",
       "tier": 4,
+      "stats": {
+        "price": 800,
+        "hp": 189543,
+        "speed": 6,
+        "atk": 6843,
+        "splashRange": 4.5,
+        "attackInterval": 1.8,
+        "range": 110,
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "counters": [
         "Archlight",
         "Marksman",
@@ -145,6 +266,17 @@
     {
       "text": "Overlord",
       "tier": 3,
+      "stats": {
+        "price": 400,
+        "hp": 15630,
+        "speed": 10,
+        "atk": 3654,
+        "splashRange": 7.5,
+        "attackInterval": 4,
+        "range": 110,
+        "target": ["air", "ground"],
+        "unitsCount": 1
+      },
       "counters": [
         "Rhino",
         "Steel Ball",
@@ -157,12 +289,34 @@
     {
       "text": "Melting Point",
       "tier": 3,
+      "stats": {
+        "price": 400,
+        "hp": 41102,
+        "speed": 6,
+        "atk": [1, 6721],
+        "splashRange": 3,
+        "attackInterval": 0.2,
+        "range": 115,
+        "target": ["air", "ground"],
+        "unitsCount": 1
+      },
       "counters": ["Fortress", "Rhino", "Vulcan"],
       "counteredBy": ["Crawler", "Marksman", "Phoenix", "Stormcaller"]
     },
     {
       "text": "Vulcan",
       "tier": 2,
+      "stats": {
+        "price": 400,
+        "hp": 38851,
+        "speed": 6,
+        "atk": 81,
+        "splashRange": 12,
+        "attackInterval": 0.1,
+        "range": 95,
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "counters": ["Crawler", "Fang", "Mustang"],
       "counteredBy": [
         "Fortress",
@@ -177,12 +331,34 @@
     {
       "text": "Hacker",
       "tier": 3,
+      "stats": {
+        "price": 200,
+        "hp": 3249,
+        "speed": 8,
+        "atk": 585,
+        "splashRange": 0,
+        "attackInterval": 0.3,
+        "range": 110,
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "counters": ["Steel Ball", "Sledgehammer", "Rhino", "Archlight"],
       "counteredBy": ["Stormcaller", "Crawler", "Fang", "Phoenix", "Overlord"]
     },
     {
       "text": "Sledgehammer",
       "tier": 4,
+      "stats": {
+        "price": 200,
+        "hp": 3700,
+        "speed": 7,
+        "atk": 608,
+        "splashRange": 5,
+        "attackInterval": 4.5,
+        "range": 95,
+        "target": ["ground"],
+        "unitsCount": 5
+      },
       "counters": ["Fang", "Mustang", "Archlight"],
       "counteredBy": [
         "Hacker",
@@ -196,6 +372,17 @@
     {
       "text": "Marksman",
       "tier": 4,
+      "stats": {
+        "price": 100,
+        "hp": 1622,
+        "speed": 8,
+        "atk": 2329,
+        "splashRange": 0,
+        "attackInterval": 3.1,
+        "range": 140,
+        "target": ["air", "ground"],
+        "unitsCount": 1
+      },
       "counters": [
         "Phoenix",
         "Overlord",
@@ -208,11 +395,33 @@
     {
       "text": "Wasp",
       "tier": 4,
+      "stats": {
+        "price": 200,
+        "hp": 302,
+        "speed": 16,
+        "atk": 202,
+        "splashRange": 0,
+        "attackInterval": 1.5,
+        "range": 50,
+        "target": ["air", "ground"],
+        "unitsCount": 12
+      },
       "counters": ["Marksman", "Phoenix"],
       "counteredBy": ["Archlight", "Mustang", "Fortress"]
     },
     {
       "text": "Scorpion",
+      "stats": {
+        "price": 300,
+        "hp": 17413,
+        "speed": 6,
+        "atk": 12130,
+        "splashRange": 15,
+        "attackInterval": 5,
+        "range": 110,
+        "target": ["ground"],
+        "unitsCount": 1
+      },
       "tier": 3,
       "counters": ["Sledgehammer", "Steel Ball", "Archlight", "War Factory"],
       "counteredBy": ["Marksman", "Phoenix", "Stormcaller", "Overlord"]

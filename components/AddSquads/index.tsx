@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { MinusIcon, PlusIcon } from "../icons";
 import styles from "./AddSquads.module.css";
 import squadsData from "../../fixtures/squads.json";
 
@@ -74,7 +75,7 @@ const AddSquads = (props: Props) => {
 
   return (
     <section className={styles.container}>
-      <h1>{props.title}</h1>
+      <h1 className={styles.title}>{props.title}</h1>
       <ul className={styles.listContainer}>
         {selectedSquads.map((squad) => {
           return (
@@ -83,18 +84,21 @@ const AddSquads = (props: Props) => {
               key={`${props.title}-${squad.name}-li`}
             >
               <div className={styles.squadName}>{squad.name}</div>
-              <div>{squad.count ? squad.count : null}</div>
+              {squad.count ? (
+                <div className={styles.squadCount}>{squad.count}</div>
+              ) : null}
               <button
                 className={styles.squadButton}
+                disabled={!squad.count}
                 onClick={() => onDecrement(squad.name)}
               >
-                -
+                <MinusIcon />
               </button>
               <button
                 className={styles.squadButton}
                 onClick={() => onIncrement(squad.name)}
               >
-                +
+                <PlusIcon />
               </button>
             </li>
           );

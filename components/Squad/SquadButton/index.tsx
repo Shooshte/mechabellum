@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { MinusIcon, PlusIcon, TrashIcon } from "./icons";
+import { MinusIcon, PlusIcon, TrashIcon } from "../../icons";
 
 import styles from "./SquadButton.module.css";
 

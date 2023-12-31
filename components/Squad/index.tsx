@@ -66,17 +66,19 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
   };
 
   const onDecrement = (squadText: string) => {
-    const newSquads = squads.map((squad) => {
-      if (squad.name === squadText) {
-        const newCount = squad.count - 1;
+    const newSquads = squads
+      .map((squad) => {
+        if (squad.name === squadText) {
+          const newCount = squad.count - 1;
 
-        return {
-          count: newCount,
-          name: squadText,
-        };
-      }
-      return squad;
-    });
+          return {
+            count: newCount,
+            name: squadText,
+          };
+        }
+        return squad;
+      })
+      .filter((squad) => squad.count > 0);
 
     onChange(newSquads);
     setSquads(newSquads);

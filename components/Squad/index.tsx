@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import AddSquadButton from "../AddSquadButton";
 import AddSquads from "../AddSquads";
 import SquadButton from "./SquadButton";
-import SquadPlaceholder from "../SquadPlaceholder";
 
 import styles from "../../styles/Home.module.css";
 
@@ -16,9 +15,7 @@ interface Props {
   squadName: string;
 }
 
-type SquadState = (Squad | "placeholder")[];
-
-const MIN_SQUADS_DISPLAYED = 5;
+type SquadState = Squad[];
 
 const SquadComponent = ({ onChange, squadName }: Props) => {
   const [squads, setSquads] = useState<SquadState>([]);
@@ -26,57 +23,36 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
 
   useEffect(() => {
     const newSquad = [...squads];
-
-    while (newSquad.length < MIN_SQUADS_DISPLAYED) {
-      newSquad.push("placeholder");
-    }
-
     setSquads(newSquad);
   }, []);
 
   const handleAddSquads = (addedSquads: Squad[]) => {
-    // @ts-ignore
-    const currentSquads: Squad[] = squads.filter(
-      (squad) => squad !== "placeholder"
-    );
+    const updatedCurrentSquads = squads.reduce((acc: Squad[], currentSquad) => {
+      const addedSquad = addedSquads.find(
+        (addedSquad) => addedSquad.name === currentSquad.name
+      );
 
-    const updatedCurrentSquads = currentSquads.reduce(
-      (acc: Squad[], currentSquad) => {
-        const addedSquad = addedSquads.find(
-          (addedSquad) => addedSquad.name === currentSquad.name
-        );
+      if (addedSquad) {
+        const newCount = currentSquad.count + addedSquad.count;
 
-        if (addedSquad) {
-          const newCount = currentSquad.count + addedSquad.count;
+        return [
+          ...acc,
+          {
+            count: newCount,
+            name: currentSquad.name,
+          },
+        ];
+      }
 
-          return [
-            ...acc,
-            {
-              count: newCount,
-              name: currentSquad.name,
-            },
-          ];
-        }
-
-        return [...acc, currentSquad];
-      },
-      []
-    );
+      return [...acc, currentSquad];
+    }, []);
 
     const newSquads = addedSquads.filter(
-      (addedSquad) =>
-        !currentSquads.some((squad) => squad.name === addedSquad.name)
+      (addedSquad) => !squads.some((squad) => squad.name === addedSquad.name)
     );
 
     const finalSquads: Squad[] = [...updatedCurrentSquads, ...newSquads];
     onChange(finalSquads);
-
-    const displayedSquads: SquadState = [...finalSquads];
-
-    while (displayedSquads.length < MIN_SQUADS_DISPLAYED) {
-      displayedSquads.push("placeholder");
-    }
-
     setSquads(finalSquads);
     handleMenuClose();
   };
@@ -90,41 +66,24 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
   };
 
   const onDecrement = (squadText: string) => {
-    const newSquads = squads
-      .map((squad) => {
-        if (squad === "placeholder") {
-          return squad;
-        }
+    const newSquads = squads.map((squad) => {
+      if (squad.name === squadText) {
+        const newCount = squad.count - 1;
 
-        if (squad.name === squadText) {
-          const newCount = squad.count - 1;
+        return {
+          count: newCount,
+          name: squadText,
+        };
+      }
+      return squad;
+    });
 
-          return {
-            count: newCount,
-            name: squadText,
-          };
-        }
-        return squad;
-      })
-      .filter((squad) => squad === "placeholder" || squad.count > 0);
-
-    const finalSquads = newSquads.filter((squad) => squad !== "placeholder");
-    // @ts-ignore
-    onChange(finalSquads);
-
-    while (newSquads.length < MIN_SQUADS_DISPLAYED) {
-      newSquads.push("placeholder");
-    }
-
+    onChange(newSquads);
     setSquads(newSquads);
   };
 
   const onIncrement = (squadText: string) => {
     const newSelectedSquads = squads.map((squad) => {
-      if (squad === "placeholder") {
-        return squad;
-      }
-
       if (squad.name == squadText) {
         return {
           count: squad.count + 1,
@@ -135,16 +94,7 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
       return { ...squad };
     });
 
-    const finalSquads = newSelectedSquads.filter(
-      (squad) => squad !== "placeholder"
-    );
-    // @ts-ignore
-    onChange(finalSquads);
-
-    while (newSelectedSquads.length < MIN_SQUADS_DISPLAYED) {
-      newSelectedSquads.push("placeholder");
-    }
-
+    onChange(newSelectedSquads);
     setSquads(newSelectedSquads);
   };
 
@@ -159,13 +109,7 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
       <h1 className={styles.sectionHeading}>{squadName}</h1>
       <div className={styles.squadContainer}>
         <AddSquadButton onClick={handleAddSquadClick} />
-        {squads.map((squad, index) => {
-          if (squad === "placeholder") {
-            return (
-              <SquadPlaceholder key={`${squadName}-placeholder-${index}`} />
-            );
-          }
-
+        {squads.map((squad) => {
           return (
             <SquadButton
               key={squad.name}

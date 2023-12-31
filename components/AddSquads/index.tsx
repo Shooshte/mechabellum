@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import styles from "../../styles/AddSquads.module.css";
+import styles from "./AddSquads.module.css";
 import squadsData from "../../fixtures/squads.json";
 
 import type { Squad } from "../../types/Squad";

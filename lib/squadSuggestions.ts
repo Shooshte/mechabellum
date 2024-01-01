@@ -1,5 +1,5 @@
 import squadsData from "../fixtures/squads.json";
-import type { Squad } from "../types/Squad";
+import type { Squad, SquadSuggestion } from "../types/Squad";
 
 interface Args {
   opponentArmy: Squad[];
@@ -46,7 +46,7 @@ const getCounterPriority = ({
 export const getSquadSuggestions = ({
   opponentArmy,
   yourArmy,
-}: Args): Squad[] => {
+}: Args): SquadSuggestion[] => {
   // For every unit in opponents army
   const unitsToCounter = opponentArmy
     .map((currentSquad) => {
@@ -70,9 +70,20 @@ export const getSquadSuggestions = ({
     });
 
   // For the first three units with the biggest counter priority
-  const possibleSuggestions = unitsToCounter
-    .slice(0, 3)
-    .reduce((counters: Squad[], squadToCounter) => {
+  const possibleSuggestions = unitsToCounter.slice(0, 3).reduce(
+    (
+      counters: {
+        count: number;
+        countering: {
+          counterPriority: number;
+          count: number;
+          name: string;
+        };
+        counterPriority: number;
+        name: string;
+      }[],
+      squadToCounter
+    ) => {
       // Find units that counter them
       const squadToCounterData = parseSquadData(squadToCounter.name);
       const possibleCounters = squadToCounterData.counteredBy
@@ -84,6 +95,7 @@ export const getSquadSuggestions = ({
 
           const roundedNeededCount = Math.ceil(neededCount);
 
+          // Check how much they are countered by opponent
           const counterPriority = getCounterPriority({
             squad: { count: roundedNeededCount, name: possibleCounter },
             opponentArmy,
@@ -91,10 +103,10 @@ export const getSquadSuggestions = ({
 
           return {
             count: roundedNeededCount,
+            countering: squadToCounter,
             counterPriority,
             name: possibleCounter,
           };
-          // Check how much they are countered by opponent
         })
         // Filter out all unneded counters
         .filter((squad) => squad.count > 0)
@@ -111,12 +123,15 @@ export const getSquadSuggestions = ({
         });
 
       return [...counters, ...possibleCounters];
-    }, []);
+    },
+    []
+  );
 
   const suggestions = possibleSuggestions.slice(0, 3).map((suggestion) => {
     return {
       name: suggestion.name,
       count: suggestion.count,
+      countering: suggestion.countering,
     };
   });
 

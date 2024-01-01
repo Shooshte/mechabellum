@@ -1,0 +1,14 @@
+.container {
+  margin: 0 12px 12px 12px;
+  width: calc(100% - 12px);
+}
+
+.list {
+  margin: 0;
+  /* 12px section padding them 16px font padding */
+  padding-inline-start: 28px;
+}
+
+.suggestion {
+  font-weight: bold;
+}

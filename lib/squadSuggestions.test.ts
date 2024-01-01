@@ -1,8 +1,8 @@
 import { getSquadSuggestions } from "./squadSuggestions";
-import type { Squad } from "../types/Squad";
+import type { Squad, SquadSuggestion } from "../types/Squad";
 
 interface TestCase {
-  expectedSuggestions: Squad[];
+  expectedSuggestions: SquadSuggestion[];
   opponentArmy: Squad[];
   yourArmy: Squad[];
 }
@@ -17,14 +17,29 @@ const TEST_CASES: TestCase[] = [
     expectedSuggestions: [
       {
         count: 1,
+        countering: {
+          count: 1,
+          counterPriority: 400,
+          name: "Vulcan",
+        },
         name: "Fortress",
       },
       {
         count: 2,
+        countering: {
+          count: 1,
+          counterPriority: 400,
+          name: "Vulcan",
+        },
         name: "Phoenix",
       },
       {
         count: 2,
+        countering: {
+          count: 1,
+          counterPriority: 400,
+          name: "Vulcan",
+        },
         name: "Rhino",
       },
     ],
@@ -35,14 +50,29 @@ const TEST_CASES: TestCase[] = [
     expectedSuggestions: [
       {
         count: 2,
+        countering: {
+          count: 2,
+          counterPriority: 800,
+          name: "Vulcan",
+        },
         name: "Fortress",
       },
       {
         count: 4,
+        countering: {
+          count: 2,
+          counterPriority: 800,
+          name: "Vulcan",
+        },
         name: "Rhino",
       },
       {
         count: 4,
+        countering: {
+          count: 2,
+          counterPriority: 800,
+          name: "Vulcan",
+        },
         name: "Stormcaller",
       },
     ],

@@ -6,28 +6,15 @@
   min-height: 100vh;
 }
 
-.section {
-  margin: 0 12px 12px 12px;
-  width: calc(100% - 12px);
-}
-
-.section:first-child {
-  margin: 12px;
-}
-
 .squadSection {
-  margin: 0 10px 10px 10px;
-  width: calc(100% - 20px);
-}
-
-.section:first-child {
-  margin: 10px;
+  margin: 0 12px 12px 12px;
+  width: calc(100% - 24px);
 }
 
 .squadContainer {
   display: grid;
   column-gap: 30px;
   grid-template-columns: repeat(auto-fill, 80px);
-  row-gap: 10px;
+  row-gap: 12px;
   width: 100%;
 }

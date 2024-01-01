@@ -40,7 +40,7 @@ export default function Home() {
         />
         <SquadComponent onChange={onYourArmyChange} squadName="Your Army" />
         <section className={styles.section}>
-          <h1 className={styles.sectionHeading}>Squad Suggestions</h1>
+          <h1>Squad Suggestions</h1>
           {showSuggestions ? (
             <ul>
               {squadSuggestions.map((squadSuggestion) => (
@@ -50,7 +50,7 @@ export default function Home() {
               ))}
             </ul>
           ) : (
-            <p className={styles.notification}>No suggestions to show</p>
+            <p className={styles.notification}>No suggestions to show.</p>
           )}
         </section>
       </>

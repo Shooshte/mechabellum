@@ -43,9 +43,8 @@
   border-bottom: 1px solid #fff;
   display: flex;
   gap: 8px;
-  height: 30px;
   justify-content: flex-start;
-  padding: 6px;
+  padding: 0 6px;
   width: 100%;
 }
 
@@ -75,9 +74,9 @@
   background-color: #000;
   display: flex;
   border: none;
-  height: 29px;
+  height: 40px;
   justify-content: center;
-  width: 29px;
+  width: 40px;
 }
 
 .squadButton:disabled,

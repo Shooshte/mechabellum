@@ -21,7 +21,9 @@ const SquadButton = ({ onDecrement, onIncrement, squad }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.countBadge}>{squad.count}</div>
-      <div className={styles.name}>{squad.name}</div>
+      <div className={styles.nameContainer}>
+        <div className={styles.name}>{squad.name}</div>
+      </div>
       <Image
         alt={squad.name}
         className={styles.image}

@@ -77,7 +77,7 @@
   gap: 6px;
   grid-template-columns: 1fr 1fr;
   justify-content: flex-start;
-  padding: 12px 6px 6px 6px;
+  padding: 12px 0;
   width: 100%;
 }
 

@@ -6,5 +6,9 @@ export interface Squad {
 export interface SquadSuggestion {
   name: string;
   count: number;
-  countering: Squad;
+  countering: {
+    count: number;
+    counterPriority: number;
+    name: string;
+  };
 }

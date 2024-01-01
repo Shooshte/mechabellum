@@ -7,22 +7,12 @@
 }
 
 .section {
-  margin: 0 6px 6px 6px;
+  margin: 0 12px 12px 12px;
   width: calc(100% - 12px);
 }
 
 .section:first-child {
-  margin: 6px;
-}
-
-.sectionHeading {
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.notification {
-  font-size: 10px;
+  margin: 12px;
 }
 
 .squadSection {

@@ -39,11 +39,11 @@
         "unitsCount": 2
       },
       "counters": ["Archlight", "Overlord", "Rhino", "Stormcaller", "Vulcan"],
-      "counteredBy": ["Wasp", "Marksman", "Mustang", "Fang", "Fortress"]
+      "counteredBy": ["Wasp", "Marksman", "Mustang", "Fang"]
     },
     {
       "text": "Fortress",
-      "tier": 1,
+      "tier": 3,
       "stats": {
         "price": 400,
         "hp": 51205,
@@ -166,7 +166,7 @@
     },
     {
       "text": "Archlight",
-      "tier": 2,
+      "tier": 4,
       "stats": {
         "price": 100,
         "hp": 3903,
@@ -180,12 +180,15 @@
       },
       "counters": ["Crawler", "Fang", "Mustang"],
       "counteredBy": [
+        "Marksman",
+        "Sledgehammer",
+        "Steel Ball",
+        "Stormcaller",
         "Rhino",
-        "Phoenix",
         "Overlord",
         "Fortress",
-        "Melting Point",
-        "Stormcaller"
+        "Phoenix",
+        "Hacker"
       ]
     },
     {
@@ -215,7 +218,7 @@
     },
     {
       "text": "Steel Ball",
-      "tier": 3,
+      "tier": 5,
       "stats": {
         "price": 200,
         "hp": 4571,
@@ -371,7 +374,7 @@
     },
     {
       "text": "Marksman",
-      "tier": 4,
+      "tier": 5,
       "stats": {
         "price": 100,
         "hp": 1622,
@@ -394,7 +397,7 @@
     },
     {
       "text": "Wasp",
-      "tier": 4,
+      "tier": 5,
       "stats": {
         "price": 200,
         "hp": 302,

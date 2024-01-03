@@ -47,85 +47,147 @@ export const getSquadSuggestions = ({
   opponentArmy,
   yourArmy,
 }: Args): SquadSuggestion[] => {
-  // For every unit in opponents army
-  const unitsToCounter = opponentArmy
-    .map((currentSquad) => {
-      const counterPriority = getCounterPriority({
-        squad: currentSquad,
-        opponentArmy: yourArmy,
-      });
+  const sortedOpponentsArmy = [...opponentArmy].sort((unitA, unitB) => {
+    const unitAData = parseSquadData(unitA.name);
+    const unitBData = parseSquadData(unitB.name);
 
-      return {
-        ...currentSquad,
-        counterPriority,
-      };
-    })
-    // Sort opponent army by number of counters the units have in your army (less is better), resolve tie by tier
-    .sort((squadA, squadB) => {
-      if (squadA.counterPriority === squadB.counterPriority) {
-        return squadA.count - squadB.count;
-      }
+    const aValue = unitA.count * unitAData.stats.price;
+    const bValue = unitB.count * unitBData.stats.price;
 
-      return squadA.counterPriority - squadB.counterPriority;
-    });
+    return bValue - aValue;
+  });
 
-  // For the first three units with the biggest counter priority
-  const possibleSuggestions = unitsToCounter.slice(0, 3).reduce(
-    (
-      counters: {
-        count: number;
-        countering: {
-          counterPriority: number;
-          count: number;
-          name: string;
-        };
-        counterPriority: number;
-        name: string;
-      }[],
-      squadToCounter
-    ) => {
-      // Find units that counter them
-      const squadToCounterData = parseSquadData(squadToCounter.name);
-      const possibleCounters = squadToCounterData.counteredBy
-        .map((possibleCounter) => {
-          const possibleCounterData = parseSquadData(possibleCounter);
+  let availableFieldedUnits = [...yourArmy];
 
-          const neededCount =
-            squadToCounter.counterPriority / possibleCounterData.stats.price;
+  const unitsToCounter = sortedOpponentsArmy
+    .map((squad) => {
+      const squadData = parseSquadData(squad.name);
 
-          const roundedNeededCount = Math.ceil(neededCount);
+      let neededCounterValue = squad.count * squadData.stats.price;
 
-          // Check how much they are countered by opponent
-          const counterPriority = getCounterPriority({
-            squad: { count: roundedNeededCount, name: possibleCounter },
-            opponentArmy,
-          });
-
-          return {
-            count: roundedNeededCount,
-            countering: squadToCounter,
-            counterPriority,
-            name: possibleCounter,
-          };
-        })
-        // Filter out all unneded counters
-        .filter((squad) => squad.count > 0)
-        // Find the least countered unit
-        .sort((squadA, squadB) => {
-          if (squadB.counterPriority === squadA.counterPriority) {
-            const squadAData = parseSquadData(squadA.name);
-            const squadBData = parseSquadData(squadB.name);
-
-            return squadAData.tier - squadBData.tier;
+      const counterPriority = availableFieldedUnits.reduce(
+        (acc: number, fieldedSquad) => {
+          if (acc <= 0) {
+            return 0;
           }
 
-          return squadB.counterPriority - squadA.counterPriority;
-        });
+          const isCounter = squadData.counteredBy.some(
+            (squadName) => squadName === fieldedSquad.name
+          );
+          if (isCounter) {
+            const fieldedSquadData = parseSquadData(fieldedSquad.name);
+            const counterValue =
+              fieldedSquad.count * fieldedSquadData.stats.price;
 
-      return [...counters, ...possibleCounters];
-    },
-    []
-  );
+            // if curent counter value is less than opp unit, all available are countering
+            // if current counter value is equal opp unit, all available units are countering
+            if (acc >= counterValue) {
+              availableFieldedUnits = availableFieldedUnits.filter(
+                (unit) => unit.name !== fieldedSquad.name
+              );
+            }
+
+            // if current counter value is more than opp unit, calculate how many are left after countering
+            if (acc < counterValue) {
+              const neededUnits = Math.ceil(acc / fieldedSquadData.stats.price);
+              availableFieldedUnits = availableFieldedUnits.map((unit) => {
+                if (unit.name === fieldedSquad.name) {
+                  return {
+                    count: unit.count - neededUnits,
+                    name: unit.name,
+                  };
+                }
+                return {
+                  ...unit,
+                };
+              });
+            }
+
+            return acc - counterValue;
+          }
+
+          return acc;
+        },
+        neededCounterValue
+      );
+
+      return { ...squad, counterPriority };
+    })
+    .filter((squad) => squad.counterPriority > 0);
+
+  const possibleSuggestions = unitsToCounter
+    .reduce(
+      (
+        counters: {
+          count: number;
+          countering: {
+            counterPriority: number;
+            count: number;
+            name: string;
+          };
+          counterPriority: number;
+          name: string;
+        }[],
+        squadToCounter
+      ) => {
+        // Find units that counter them
+        const squadToCounterData = parseSquadData(squadToCounter.name);
+        const possibleCounters = squadToCounterData.counteredBy
+          .map((possibleCounter) => {
+            const possibleCounterData = parseSquadData(possibleCounter);
+
+            const neededCount =
+              squadToCounter.counterPriority / possibleCounterData.stats.price;
+
+            const roundedNeededCount = Math.ceil(neededCount);
+
+            // Check how much they are countered by opponent
+            const counterPriority = getCounterPriority({
+              squad: { count: roundedNeededCount, name: possibleCounter },
+              opponentArmy,
+            });
+
+            return {
+              count: roundedNeededCount,
+              countering: squadToCounter,
+              counterPriority,
+              name: possibleCounter,
+            };
+          })
+          // Find the least countered unit
+          .sort((squadA, squadB) => {
+            if (squadB.counterPriority === squadA.counterPriority) {
+              // resolve tie with units that are already fielded
+              const isAFielded = yourArmy.some(
+                (squad) => squad.name === squadA.name
+              );
+              const isBFielded = yourArmy.some(
+                (squad) => squad.name === squadB.name
+              );
+
+              if (isAFielded === isBFielded) {
+                // resolve with unit tier
+                const squadAData = parseSquadData(squadA.name);
+                const squadBData = parseSquadData(squadB.name);
+
+                return squadAData.tier - squadBData.tier;
+              }
+
+              if (isAFielded) {
+                return -1;
+              }
+            }
+
+            return squadB.counterPriority - squadA.counterPriority;
+          });
+
+        return [...counters, ...possibleCounters];
+      },
+      []
+    )
+    .sort((suggestionA, suggestionB) => {
+      return suggestionB.counterPriority - suggestionA.counterPriority;
+    });
 
   const suggestions = possibleSuggestions.slice(0, 3).map((suggestion) => {
     return {

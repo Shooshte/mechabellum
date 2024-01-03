@@ -16,15 +16,6 @@ const TEST_CASES: TestCase[] = [
   {
     expectedSuggestions: [
       {
-        count: 1,
-        countering: {
-          count: 1,
-          counterPriority: 400,
-          name: "Vulcan",
-        },
-        name: "Fortress",
-      },
-      {
         count: 2,
         countering: {
           count: 1,
@@ -42,6 +33,15 @@ const TEST_CASES: TestCase[] = [
         },
         name: "Rhino",
       },
+      {
+        count: 2,
+        countering: {
+          count: 1,
+          counterPriority: 400,
+          name: "Vulcan",
+        },
+        name: "Stormcaller",
+      },
     ],
     opponentArmy: [{ name: "Vulcan", count: 1 }],
     yourArmy: [],
@@ -51,36 +51,92 @@ const TEST_CASES: TestCase[] = [
       {
         count: 2,
         countering: {
-          count: 2,
-          counterPriority: 800,
-          name: "Vulcan",
+          count: 4,
+          counterPriority: 400,
+          name: "Crawler",
         },
-        name: "Fortress",
+        name: "Mustang",
       },
       {
-        count: 4,
+        count: 1,
         countering: {
           count: 2,
-          counterPriority: 800,
-          name: "Vulcan",
+          counterPriority: 400,
+          name: "Mustang",
+        },
+        name: "Vulcan",
+      },
+      {
+        count: 2,
+        countering: {
+          count: 2,
+          counterPriority: 400,
+          name: "Mustang",
+        },
+        name: "Rhino",
+      },
+    ],
+    opponentArmy: [
+      { name: "Phoenix", count: 2 },
+      { name: "Mustang", count: 2 },
+      { name: "Crawler", count: 4 },
+    ],
+    yourArmy: [
+      {
+        name: "Mustang",
+        count: 2,
+      },
+      {
+        name: "Crawler",
+        count: 2,
+      },
+    ],
+  },
+  {
+    expectedSuggestions: [
+      {
+        count: 2,
+        countering: {
+          count: 4,
+          counterPriority: 400,
+          name: "Crawler",
+        },
+        name: "Mustang",
+      },
+      {
+        count: 2,
+        countering: {
+          count: 4,
+          counterPriority: 400,
+          name: "Crawler",
         },
         name: "Rhino",
       },
       {
-        count: 4,
+        count: 1,
         countering: {
-          count: 2,
-          counterPriority: 800,
-          name: "Vulcan",
+          count: 4,
+          counterPriority: 400,
+          name: "Crawler",
         },
-        name: "Stormcaller",
+        name: "Vulcan",
       },
     ],
     opponentArmy: [
-      { name: "Vulcan", count: 2 },
-      { name: "Mustang", count: 4 },
+      { name: "Phoenix", count: 2 },
+      { name: "Mustang", count: 2 },
+      { name: "Crawler", count: 4 },
     ],
-    yourArmy: [],
+    yourArmy: [
+      {
+        name: "Mustang",
+        count: 2,
+      },
+      {
+        name: "Rhino",
+        count: 2,
+      },
+    ],
   },
 ];
 

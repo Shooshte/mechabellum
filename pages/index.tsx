@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getSquadSuggestions } from "../lib/squadSuggestions";
 
 import SquadComponent from "../components/Squad";
@@ -17,12 +17,22 @@ export default function Home() {
     []
   );
 
+  const canClearSquads = useMemo(() => {
+    return opponentArmy.length > 0 || yourArmy.length > 0;
+  }, [opponentArmy, yourArmy]);
+
   const onOpponentArmyChange = (army: Squad[]) => {
     setOpponentArmy(army);
   };
 
   const onYourArmyChange = (army: Squad[]) => {
     setYourArmy(army);
+  };
+
+  const onClearSquads = () => {
+    setOpponentArmy([]);
+    setYourArmy([]);
+    setSquadSuggestions([]);
   };
 
   useEffect(() => {
@@ -37,9 +47,21 @@ export default function Home() {
         <SquadComponent
           onChange={onOpponentArmyChange}
           squadName="Opponent's Army"
+          squads={opponentArmy}
         />
-        <SquadComponent onChange={onYourArmyChange} squadName="Your Army" />
+        <SquadComponent
+          onChange={onYourArmyChange}
+          squadName="Your Army"
+          squads={yourArmy}
+        />
         <SquadSuggestions suggestions={squadSuggestions} />
+        <button
+          className={styles.clearSquadsButton}
+          disabled={!canClearSquads}
+          onClick={onClearSquads}
+        >
+          Clear squads
+        </button>
       </>
     </main>
   );

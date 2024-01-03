@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import AddSquadButton from "../AddSquadButton";
 import AddSquads from "../AddSquads";
@@ -13,18 +13,11 @@ import type { Squad } from "../../types/Squad";
 interface Props {
   onChange: (squads: Squad[]) => void;
   squadName: string;
+  squads: Squad[];
 }
 
-type SquadState = Squad[];
-
-const SquadComponent = ({ onChange, squadName }: Props) => {
-  const [squads, setSquads] = useState<SquadState>([]);
+const SquadComponent = ({ onChange, squadName, squads }: Props) => {
   const [showMenu, setShowMenu] = useState(false);
-
-  useEffect(() => {
-    const newSquad = [...squads];
-    setSquads(newSquad);
-  }, []);
 
   const handleAddSquads = (addedSquads: Squad[]) => {
     const updatedCurrentSquads = squads.reduce((acc: Squad[], currentSquad) => {
@@ -53,7 +46,6 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
 
     const finalSquads: Squad[] = [...updatedCurrentSquads, ...newSquads];
     onChange(finalSquads);
-    setSquads(finalSquads);
     handleMenuClose();
   };
 
@@ -81,7 +73,6 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
       .filter((squad) => squad.count > 0);
 
     onChange(newSquads);
-    setSquads(newSquads);
   };
 
   const onIncrement = (squadText: string) => {
@@ -97,7 +88,6 @@ const SquadComponent = ({ onChange, squadName }: Props) => {
     });
 
     onChange(newSelectedSquads);
-    setSquads(newSelectedSquads);
   };
 
   return showMenu ? (

@@ -62,13 +62,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#317EFB" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap"
-          rel="stylesheet"
-        ></link>
       </Head>
       <PostHogProvider client={posthog}>
         <Component {...pageProps} />

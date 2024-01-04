@@ -139,6 +139,10 @@ export const getSquadSuggestions = ({
             const neededCount =
               squadToCounter.counterPriority / possibleCounterData.stats.price;
 
+            const counteredCount = Math.ceil(
+              squadToCounter.counterPriority / squadToCounterData.stats.price
+            );
+
             const roundedNeededCount = Math.ceil(neededCount);
 
             // Check how much they are countered by opponent
@@ -149,7 +153,11 @@ export const getSquadSuggestions = ({
 
             return {
               count: roundedNeededCount,
-              countering: squadToCounter,
+              countering: {
+                count: counteredCount,
+                counterPriority: squadToCounter.counterPriority,
+                name: squadToCounter.name,
+              },
               counterPriority,
               name: possibleCounter,
             };

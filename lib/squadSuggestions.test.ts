@@ -138,6 +138,44 @@ const TEST_CASES: TestCase[] = [
       },
     ],
   },
+  {
+    expectedSuggestions: [
+      {
+        count: 4,
+        countering: {
+          count: 2,
+          counterPriority: 800,
+          name: "Vulcan",
+        },
+        name: "Phoenix",
+      },
+      {
+        count: 4,
+        countering: {
+          count: 2,
+          counterPriority: 800,
+          name: "Vulcan",
+        },
+        name: "Rhino",
+      },
+      {
+        count: 4,
+        countering: {
+          count: 2,
+          counterPriority: 800,
+          name: "Vulcan",
+        },
+        name: "Stormcaller",
+      },
+    ],
+    opponentArmy: [{ name: "Vulcan", count: 4 }],
+    yourArmy: [
+      {
+        name: "Phoenix",
+        count: 4,
+      },
+    ],
+  },
 ];
 
 describe("getSquadSuggestion results", () => {

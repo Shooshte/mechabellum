@@ -5,8 +5,20 @@ const withPWA = require("next-pwa")({
 
 const { withSentryConfig } = require("@sentry/nextjs");
 
+const nextConfig = {
+  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: "/76460835-cd4e-49ef-8128-836e3fb5ac0c/:path*",
+        destination: "https://app.posthog.com",
+      },
+    ];
+  },
+};
+
 const sentryConfig = withSentryConfig(
-  module.exports,
+  nextConfig,
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options

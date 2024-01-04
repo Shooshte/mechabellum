@@ -11,7 +11,7 @@ const nextConfig = {
     return [
       {
         source: "/76460835-cd4e-49ef-8128-836e3fb5ac0c/:path*",
-        destination: "https://app.posthog.com",
+        destination: "https://app.posthog.com/:path*",
       },
     ];
   },

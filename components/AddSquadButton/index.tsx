@@ -7,8 +7,12 @@ interface Props {
 }
 
 const AddSquadButton = ({ onClick }: Props) => {
+  const handleAddClick = () => {
+    onClick();
+  };
+
   return (
-    <button className={styles.button} onClick={onClick}>
+    <button className={styles.button} onClick={handleAddClick}>
       <Image
         alt="plus sign"
         className={styles.plusSign}

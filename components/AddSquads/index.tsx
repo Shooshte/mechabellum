@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePostHog } from "posthog-js/react";
 
 import { MinusIcon, PlusIcon } from "../icons";
 import styles from "./AddSquads.module.css";
@@ -14,6 +15,8 @@ interface Props {
   title: string;
 }
 
+const POSTHOG_COMPONENT_NAME = "AddSquads";
+
 const INITIAL_SQUADS = squadsData.squads
   .sort((squadA, squadB) => {
     return (squadA?.tier || 0) - (squadB.tier || 0);
@@ -26,6 +29,8 @@ const INITIAL_SQUADS = squadsData.squads
   });
 
 const AddSquads = (props: Props) => {
+  const posthog = usePostHog();
+
   const [selectedSquads, setSelectedSquads] = useState<Squad[]>(INITIAL_SQUADS);
 
   const onDecrement = (squadText: string) => {
@@ -45,6 +50,11 @@ const AddSquads = (props: Props) => {
     });
 
     setSelectedSquads(newSelectedSquads);
+
+    posthog.capture("squad_decrement_click", {
+      component: POSTHOG_COMPONENT_NAME,
+      squadText,
+    });
   };
 
   const onIncrement = (squadText: string) => {
@@ -60,12 +70,29 @@ const AddSquads = (props: Props) => {
     });
 
     setSelectedSquads(newSelectedSquads);
+
+    posthog.capture("squad_increment_click", {
+      component: POSTHOG_COMPONENT_NAME,
+      squadText,
+    });
   };
 
   const handleAddSquads = () => {
     const newSquads = selectedSquads.filter((squad) => squad.count > 0);
 
     props.onAdd(newSquads);
+
+    posthog.capture("add_squads_click", {
+      component: POSTHOG_COMPONENT_NAME,
+    });
+  };
+
+  const handleCancel = () => {
+    props.onCancel();
+
+    posthog.capture("close_without_adding_click", {
+      component: POSTHOG_COMPONENT_NAME,
+    });
   };
 
   return (
@@ -100,7 +127,7 @@ const AddSquads = (props: Props) => {
         })}
       </ul>
       <div className={styles.buttonsContainer}>
-        <button className={styles.mainButton} onClick={props.onCancel}>
+        <button className={styles.mainButton} onClick={handleCancel}>
           Close Without Adding
         </button>
         <button className={styles.mainButton} onClick={handleAddSquads}>

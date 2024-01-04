@@ -12,6 +12,16 @@
   z-index: 1;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    max-width: 375px;
+    left: unset;
+    right: 0;
+  }
+}
+
 .title {
   margin: 12px;
 }

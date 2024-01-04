@@ -90,29 +90,32 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
     onChange(newSelectedSquads);
   };
 
-  return showMenu ? (
-    <AddSquads
-      onAdd={handleAddSquads}
-      onCancel={handleMenuClose}
-      title={`Adding Squads To ${squadName}`}
-    />
-  ) : (
-    <section className={styles.squadSection}>
-      <h1 className={styles.sectionHeading}>{squadName}</h1>
-      <div className={styles.squadContainer}>
-        <AddSquadButton onClick={handleAddSquadClick} />
-        {squads.map((squad) => {
-          return (
-            <SquadButton
-              key={squad.name}
-              onDecrement={() => onDecrement(squad.name)}
-              onIncrement={() => onIncrement(squad.name)}
-              squad={squad}
-            />
-          );
-        })}
-      </div>
-    </section>
+  return (
+    <>
+      {showMenu && (
+        <AddSquads
+          onAdd={handleAddSquads}
+          onCancel={handleMenuClose}
+          title={`Adding Squads To ${squadName}`}
+        />
+      )}
+      <section className={styles.squadSection}>
+        <h1 className={styles.sectionHeading}>{squadName}</h1>
+        <div className={styles.squadContainer}>
+          <AddSquadButton onClick={handleAddSquadClick} />
+          {squads.map((squad) => {
+            return (
+              <SquadButton
+                key={squad.name}
+                onDecrement={() => onDecrement(squad.name)}
+                onIncrement={() => onIncrement(squad.name)}
+                squad={squad}
+              />
+            );
+          })}
+        </div>
+      </section>
+    </>
   );
 };
 

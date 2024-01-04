@@ -13,13 +13,13 @@ import type { Squad } from "../../types/Squad";
 
 interface Props {
   onChange: (squads: Squad[]) => void;
-  squadName: string;
+  armyName: string;
   squads: Squad[];
 }
 
 const POSTHOG_COMPONENT_NAME = "Squad";
 
-const SquadComponent = ({ onChange, squadName, squads }: Props) => {
+const SquadComponent = ({ onChange, armyName, squads }: Props) => {
   const posthog = usePostHog();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -63,19 +63,19 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
 
     posthog.capture("add_new_squads_click", {
       component: POSTHOG_COMPONENT_NAME,
-      squadName,
+      armyName,
     });
   };
 
-  const onDecrement = (squadText: string) => {
+  const onDecrement = (squadName: string) => {
     const newSquads = squads
       .map((squad) => {
-        if (squad.name === squadText) {
+        if (squad.name === squadName) {
           const newCount = squad.count - 1;
 
           return {
             count: newCount,
-            name: squadText,
+            name: squadName,
           };
         }
         return squad;
@@ -86,17 +86,17 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
 
     posthog.capture("squad_decrement_click", {
       component: POSTHOG_COMPONENT_NAME,
+      armyName,
       squadName,
-      squadText,
     });
   };
 
-  const onIncrement = (squadText: string) => {
+  const onIncrement = (squadName: string) => {
     const newSelectedSquads = squads.map((squad) => {
-      if (squad.name == squadText) {
+      if (squad.name == squadName) {
         return {
           count: squad.count + 1,
-          name: squadText,
+          name: squadName,
         };
       }
 
@@ -107,8 +107,8 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
 
     posthog.capture("squad_increment_click", {
       component: POSTHOG_COMPONENT_NAME,
+      armyName,
       squadName,
-      squadText,
     });
   };
 
@@ -118,11 +118,11 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
         <AddSquads
           onAdd={handleAddSquads}
           onCancel={handleMenuClose}
-          title={`Adding Squads To ${squadName}`}
+          title={`Adding Squads To ${armyName}`}
         />
       )}
       <section className={styles.squadSection}>
-        <h1 className={styles.sectionHeading}>{squadName}</h1>
+        <h1 className={styles.sectionHeading}>{armyName}</h1>
         <div className={styles.squadContainer}>
           <AddSquadButton onClick={handleAddSquadClick} />
           {squads.map((squad) => {

@@ -33,17 +33,17 @@ const AddSquads = (props: Props) => {
 
   const [selectedSquads, setSelectedSquads] = useState<Squad[]>(INITIAL_SQUADS);
 
-  const onDecrement = (squadText: string) => {
+  const onDecrement = (squadName: string) => {
     const newSelectedSquads = selectedSquads.map((squad) => {
       let newCount = squad.count - 1;
       if (newCount < 0) {
         newCount = 0;
       }
 
-      if (squad.name === squadText) {
+      if (squad.name === squadName) {
         return {
           count: newCount,
-          name: squadText,
+          name: squadName,
         };
       }
       return squad;
@@ -53,16 +53,16 @@ const AddSquads = (props: Props) => {
 
     posthog.capture("squad_decrement_click", {
       component: POSTHOG_COMPONENT_NAME,
-      squadText,
+      squadName: squadName,
     });
   };
 
-  const onIncrement = (squadText: string) => {
+  const onIncrement = (squadName: string) => {
     const newSelectedSquads = selectedSquads.map((squad) => {
-      if (squad.name == squadText) {
+      if (squad.name == squadName) {
         return {
           count: squad.count + 1,
-          name: squadText,
+          name: squadName,
         };
       }
 
@@ -73,7 +73,7 @@ const AddSquads = (props: Props) => {
 
     posthog.capture("squad_increment_click", {
       component: POSTHOG_COMPONENT_NAME,
-      squadText,
+      squadName: squadName,
     });
   };
 

@@ -51,12 +51,12 @@ export default function Home() {
       <>
         <SquadComponent
           onChange={onOpponentArmyChange}
-          squadName="Opponent's Army"
+          armyName="Opponent's Army"
           squads={opponentArmy}
         />
         <SquadComponent
           onChange={onYourArmyChange}
-          squadName="Your Army"
+          armyName="Your Army"
           squads={yourArmy}
         />
         <SquadSuggestions suggestions={squadSuggestions} />

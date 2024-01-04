@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePostHog } from "posthog-js/react";
 
 import AddSquadButton from "../AddSquadButton";
 import AddSquads from "../AddSquads";
@@ -16,7 +17,11 @@ interface Props {
   squads: Squad[];
 }
 
+const POSTHOG_COMPONENT_NAME = "Squad";
+
 const SquadComponent = ({ onChange, squadName, squads }: Props) => {
+  const posthog = usePostHog();
+
   const [showMenu, setShowMenu] = useState(false);
 
   const handleAddSquads = (addedSquads: Squad[]) => {
@@ -55,6 +60,11 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
 
   const handleAddSquadClick = () => {
     setShowMenu(true);
+
+    posthog.capture("add_new_squads_click", {
+      component: POSTHOG_COMPONENT_NAME,
+      squadName,
+    });
   };
 
   const onDecrement = (squadText: string) => {
@@ -73,6 +83,12 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
       .filter((squad) => squad.count > 0);
 
     onChange(newSquads);
+
+    posthog.capture("squad_decrement_click", {
+      component: POSTHOG_COMPONENT_NAME,
+      squadName,
+      squadText,
+    });
   };
 
   const onIncrement = (squadText: string) => {
@@ -88,6 +104,12 @@ const SquadComponent = ({ onChange, squadName, squads }: Props) => {
     });
 
     onChange(newSelectedSquads);
+
+    posthog.capture("squad_increment_click", {
+      component: POSTHOG_COMPONENT_NAME,
+      squadName,
+      squadText,
+    });
   };
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { usePostHog } from "posthog-js/react";
 import { getSquadSuggestions } from "../lib/squadSuggestions";
 
 import SquadComponent from "../components/Squad";
@@ -11,6 +12,8 @@ import styles from "../styles/Home.module.css";
 import type { Squad, SquadSuggestion } from "../types/Squad";
 
 export default function Home() {
+  const posthog = usePostHog();
+
   const [opponentArmy, setOpponentArmy] = useState<Squad[]>([]);
   const [yourArmy, setYourArmy] = useState<Squad[]>([]);
   const [squadSuggestions, setSquadSuggestions] = useState<SquadSuggestion[]>(
@@ -30,6 +33,8 @@ export default function Home() {
   };
 
   const onClearSquads = () => {
+    posthog.capture("clear_squads_click");
+
     setOpponentArmy([]);
     setYourArmy([]);
     setSquadSuggestions([]);

@@ -49,15 +49,6 @@ const TEST_CASES: TestCase[] = [
   {
     expectedSuggestions: [
       {
-        count: 2,
-        countering: {
-          count: 4,
-          counterPriority: 400,
-          name: "Crawler",
-        },
-        name: "Mustang",
-      },
-      {
         count: 1,
         countering: {
           count: 2,
@@ -74,6 +65,15 @@ const TEST_CASES: TestCase[] = [
           name: "Mustang",
         },
         name: "Rhino",
+      },
+      {
+        count: 1,
+        countering: {
+          count: 2,
+          counterPriority: 400,
+          name: "Mustang",
+        },
+        name: "Fortress",
       },
     ],
     opponentArmy: [
@@ -176,11 +176,49 @@ const TEST_CASES: TestCase[] = [
       },
     ],
   },
+  {
+    expectedSuggestions: [
+      {
+        count: 1,
+        countering: {
+          count: 1,
+          counterPriority: 200,
+          name: "Vulcan",
+        },
+        name: "Phoenix",
+      },
+      {
+        count: 1,
+        countering: {
+          count: 1,
+          counterPriority: 200,
+          name: "Vulcan",
+        },
+        name: "Rhino",
+      },
+      {
+        count: 1,
+        countering: {
+          count: 1,
+          counterPriority: 200,
+          name: "Vulcan",
+        },
+        name: "Stormcaller",
+      },
+    ],
+    opponentArmy: [{ name: "Vulcan", count: 2 }],
+    yourArmy: [
+      {
+        name: "Phoenix",
+        count: 3,
+      },
+    ],
+  },
 ];
 
 describe("getSquadSuggestion results", () => {
   TEST_CASES.forEach((testCase, index) => {
-    it(`Test case number ${index}`, () => {
+    it(`Test case number ${index + 1}`, () => {
       const suggestions = getSquadSuggestions({
         opponentArmy: testCase.opponentArmy,
         yourArmy: testCase.yourArmy,

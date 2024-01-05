@@ -26,12 +26,28 @@
 
 .squad {
   align-items: center;
-  background-color: #000;
+  background: linear-gradient(
+    90deg,
+    #000 21.74%,
+    rgba(255, 255, 255, 0%) 51.28%,
+    #000 75.21%
+  );
   border-bottom: 1px solid #fff;
   display: flex;
   justify-content: flex-start;
   padding: 0 8px;
+  position: relative;
   width: 100%;
+}
+
+.squadImage {
+  background: #000;
+  left: 15%;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 75%;
+  z-index: -1;
 }
 
 .squadName {

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePostHog } from "posthog-js/react";
 
+import Image from "next/image";
 import { MinusIcon, PlusIcon } from "../icons";
 import styles from "./AddSquads.module.css";
 import squadsData from "../../fixtures/squads.json";
@@ -100,11 +101,26 @@ const AddSquads = (props: Props) => {
       <h1 className={styles.title}>{props.title}</h1>
       <ul className={styles.listContainer}>
         {selectedSquads.map((squad) => {
+          const imageSrc = `/images/squadsMenu/${squad.name.replace(
+            " ",
+            "_"
+          )}.png`;
+
           return (
             <li
               className={styles.squad}
               key={`${props.title}-${squad.name}-li`}
             >
+              <div className={styles.squadImage}>
+                <Image
+                  alt={squad.name}
+                  fill
+                  src={imageSrc}
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
               <div className={styles.squadName}>{squad.name}</div>
               {squad.count ? (
                 <div className={styles.squadCount}>{squad.count}</div>

@@ -28,10 +28,12 @@ const SquadButton = ({ onDecrement, onIncrement, squad }: Props) => {
         alt={squad.name}
         className={styles.image}
         fill
-        objectFit="contain"
-        objectPosition="left top"
         onError={() => setSrc(fallBackSrc)}
         src={src}
+        style={{
+          objectFit: "contain",
+          objectPosition: "left top",
+        }}
       />
       <div className={styles.controls}>
         <button className={styles.button} onClick={onDecrement}>

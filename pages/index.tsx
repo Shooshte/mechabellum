@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { usePostHog } from "posthog-js/react";
 import { getSquadSuggestions } from "../lib/squadSuggestions";
 
@@ -26,10 +26,16 @@ export default function Home() {
 
   const onOpponentArmyChange = (army: Squad[]) => {
     setOpponentArmy(army);
+
+    const suggestions = getSquadSuggestions({ opponentArmy: army, yourArmy });
+    setSquadSuggestions(suggestions);
   };
 
   const onYourArmyChange = (army: Squad[]) => {
     setYourArmy(army);
+
+    const suggestions = getSquadSuggestions({ opponentArmy, yourArmy: army });
+    setSquadSuggestions(suggestions);
   };
 
   const onClearSquads = () => {
@@ -39,12 +45,6 @@ export default function Home() {
     setYourArmy([]);
     setSquadSuggestions([]);
   };
-
-  useEffect(() => {
-    const suggestions = getSquadSuggestions({ opponentArmy, yourArmy });
-
-    setSquadSuggestions(suggestions);
-  }, [opponentArmy, yourArmy]);
 
   return (
     <main className={styles.container}>
